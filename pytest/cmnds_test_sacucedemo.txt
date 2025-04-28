@@ -1,0 +1,7 @@
+pytest
+pytest --headed
+pytest --headed --base-url https://www.saucedemo.com/
+pytest --headed --base-url https://www.saucedemo.com/ --browser firefox --browser chromium --browser webkit    
+pytest --headed --base-url https://www.saucedemo.com/  --browser-channel chrome
+pytest --headed --base-url https://www.saucedemo.com/  --browser-channel chrome --tracing on
+playwright show-trace test-results\pytest-test-saucedemo-py-test-inventory-site-chromium\trace.zip
