@@ -11,7 +11,7 @@ async def main():
         await page.goto("https://demoqa.com/radio-button")
         #-Actions
         await page.check("#yesRadio", force=True)
-        await page.screenshot(path="screenshots/radioButton.png")
+        await page.screenshot(path="screenshots/radioButton.png")   
         #-Assertions
         await page.is_checked("#yesRadio") is True
         await expect(page.locator(".text-success")).to_have_text("Yes")
