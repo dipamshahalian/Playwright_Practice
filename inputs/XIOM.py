@@ -1,0 +1,55 @@
+import re
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context(viewport={"width":1920,"height":1000})
+    page = context.new_page()
+    page.goto("https://xiom-react-frok.vercel.app/login?redirect=%2FcreatePatient")
+    page.get_by_role("textbox", name="Username").click()
+    page.get_by_role("textbox", name="Username").click()
+    page.get_by_role("textbox", name="Username").fill("harmit.mendapara@aliansoftware.net")
+    page.get_by_role("textbox", name="Password").click()
+    page.get_by_role("textbox", name="Password").click()
+    page.get_by_role("textbox", name="Password").fill("Admin$289")
+    page.get_by_role("button", name="Sign In").click()
+    page.get_by_text(".st0{fill:#fff;} Patient").click()
+    page.get_by_role("link", name="- Patient Registration").click()
+    page.locator("div").filter(has_text=re.compile(r"^Mr\./Mrs\.\/Ms\.:SelectMr\.Mrs\.Ms\.First Name:Middle Name:Last Name:$")).get_by_role("combobox").select_option("Mr")
+    page.get_by_role("textbox", name="Enter first name").click()
+    page.get_by_role("textbox", name="Enter first name").fill("Dipam")
+    page.get_by_role("textbox", name="Enter first name").press("Tab")
+    page.get_by_role("textbox", name="Enter middle name").press("Tab")
+    page.get_by_role("textbox", name="Enter last name").fill("Shah")
+    page.locator("div").filter(has_text=re.compile(r"^Sex:SelectMaleFemaleDOBAGE:Marital Status:SelectMarriedUnmarried$")).get_by_role("textbox").click()
+    page.locator("div").filter(has_text=re.compile(r"^Sex:SelectMaleFemaleDOBAGE:Marital Status:SelectMarriedUnmarried$")).get_by_role("textbox").fill("10/10/2003")
+    page.locator("div").filter(has_text=re.compile(r"^Sex:SelectMaleFemaleDOBAGE:Marital Status:SelectMarriedUnmarried$")).get_by_role("textbox").press("Tab")
+    page.get_by_placeholder("Enter age").press("Tab")
+    page.locator("div").filter(has_text=re.compile(r"^Sex:SelectMaleFemaleDOBAGE:Marital Status:SelectMarriedUnmarried$")).get_by_role("combobox").nth(1).press("Tab")
+    page.locator("div").filter(has_text=re.compile(r"^Sex:SelectMaleFemaleDOBAGE:Marital Status:SelectMarriedUnmarried$")).get_by_role("combobox").nth(1).select_option("Single")
+    page.get_by_role("button", name="Continue").click()
+    page.locator("div").filter(has_text=re.compile(r"^Residence:SelectHouseApartmentResidence Number:Building Name:Street Name:$")).get_by_role("combobox").select_option("House")
+    page.get_by_role("textbox", name="Enter residence number").click()
+    page.get_by_role("textbox", name="Enter residence number").fill("53")
+    page.get_by_role("textbox", name="Enter building name").click()
+    page.get_by_role("textbox", name="Enter street name").click()
+    page.get_by_role("textbox", name="Enter street name").fill("HimalayaHeights")
+    page.get_by_role("combobox").nth(2).select_option("66")
+    page.get_by_role("combobox").nth(3).select_option("65")
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_role("button", name="Save").click()
+    page.get_by_role("button", name="close").click()
+    page.get_by_role("button", name="Cancel").click()
+    page.get_by_role("textbox", name="Search on Patient's First").click()
+    page.get_by_role("textbox", name="Search on Patient's First").fill("Dipam")
+    page.get_by_role("button", name="Search", exact=True).click()
+    page.get_by_text("Hi1004015").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

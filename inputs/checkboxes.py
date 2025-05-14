@@ -30,3 +30,8 @@ async def main():
         await browser.close()
 
 asyncio.run(main())
+
+# A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+#  what to do rn: 
+# College: Review card from vml sir, hard bound the report, to make all docs ready, to verify the presentation (can  also add the Playwright related stuff), can definitely showcase the playwright related thing in live during xternal
+# 
