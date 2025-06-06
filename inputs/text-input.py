@@ -3,7 +3,7 @@ from playwright.async_api import async_playwright, expect
 
 async def main():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
+        browser = await p.webkit.launch(headless=False)
         context = await browser.new_context()
         await context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = await context.new_page()
@@ -24,6 +24,8 @@ async def main():
         await expect(page.locator("p#permanentAddress")).to_have_text("Permananet Address :yourHeart")
         #-Stoping Tracing
         await context.tracing.stop(path = "logs/trace.zip")
+
+        input("Press Enter to close the browser...")
         #-Closing browser
         await browser.close()
 

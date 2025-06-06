@@ -28,5 +28,6 @@ async def main():
 
         # Close the browser
         await browser.close()
+        input("Press Enter to close the browser...")
 
 asyncio.run(main())
