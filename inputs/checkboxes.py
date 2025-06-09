@@ -27,7 +27,8 @@ async def main():
         await context.tracing.stop(path="checkbox.zip")
 
         # Close the browser
+        # input("Press Enter to close the browser...")
         await browser.close()
-        input("Press Enter to close the browser...")
+        
 
 asyncio.run(main())
